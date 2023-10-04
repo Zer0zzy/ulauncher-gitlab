@@ -357,7 +357,7 @@ class PreferencesEventListener(EventListener):
         """Initializes the GitLab client."""
         extension.gitlab = gitlab.Gitlab(
             event.preferences["url"],
-            private_token=event.preferences["access_token"])
+            private_gitlab_token=event.preferences["access_token"])
 
         # save the logged in user.
         try:
@@ -379,7 +379,7 @@ class PreferencesUpdateEventListener(EventListener):
             extension.gitlab.url = event.new_value
         elif event.id == "access_token":
             extension.gitlab = gitlab.Gitlab(extension.preferences["url"],
-                                             private_token=event.new_value)
+                                             private_gitlab_token=event.new_value)
 
             # save the logged in user.
             try:
